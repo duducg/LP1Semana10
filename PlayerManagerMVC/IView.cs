@@ -14,5 +14,6 @@ namespace PlayerManagerMVC
         Player InsertPlayer();
         int AskForMinInput();
         void ListPlayers(IEnumerable<Player> playersToList);
+        PlayerOrder PromptPlayerOrder();
     }
 }

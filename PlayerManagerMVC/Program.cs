@@ -9,13 +9,12 @@ namespace PlayerManagerMVC
     {
         private static void Main(string[] args)
         {
-            // Create a new instance of the player listing program
             List<Player> playerList = new List<Player>()
             {
                 new Player("Gualter",100),
                 new Player("Almondega",500),
             };
-            Controller controller = new Controller();
+            Controller controller = new Controller(playerList);
             IView v_ = new UglyView(controller, playerList);
             controller.Start(v_);
         }

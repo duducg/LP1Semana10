@@ -21,7 +21,7 @@ namespace PlayerManagerMVC
         }
 
         
-        private void Start(IView v_)
+        public void Start(IView v_)
         {
 
             this.v_ = v_;
@@ -77,13 +77,6 @@ namespace PlayerManagerMVC
             v_.ListPlayers(playersWithScoreGreaterThan);
         }
 
-        /// <summary>
-        /// Get players with a score higher than a given value.
-        /// </summary>
-        /// <param name="minScore">Minimum score players should have.</param>
-        /// <returns>
-        /// An enumerable of players with a score higher than the given value.
-        /// </returns>
         private IEnumerable<Player> GetPlayersWithScoreGreaterThan(int minScore)
         {
             // Cycle all players in the original player list
@@ -104,20 +97,7 @@ namespace PlayerManagerMVC
         /// </summary>
         private void SortPlayerList()
         {
-            PlayerOrder playerOrder;
-
-            Console.WriteLine("Player order");
-            Console.WriteLine("------------");
-            Console.WriteLine(
-                $"{(int)PlayerOrder.ByScore}. Order by score");
-            Console.WriteLine(
-                $"{(int)PlayerOrder.ByName}. Order by name");
-            Console.WriteLine(
-                $"{(int)PlayerOrder.ByNameReverse}. Order by name (reverse)");
-            Console.WriteLine("");
-            Console.Write("> ");
-
-            playerOrder = Enum.Parse<PlayerOrder>(Console.ReadLine());
+            PlayerOrder playerOrder = v_.PromptPlayerOrder();
 
             switch (playerOrder)
             {
@@ -131,7 +111,7 @@ namespace PlayerManagerMVC
                     playerList.Sort(compareByNameReverse);
                     break;
                 default:
-                    Console.Error.WriteLine("\n>>> Unknown player order! <<<\n");
+                    v_.InvalidOption();
                     break;
             }
         }
