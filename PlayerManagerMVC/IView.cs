@@ -7,12 +7,12 @@ namespace PlayerManagerMVC
 {
     public interface IView
     {
-        int MainMenu();
+        int ShowMenu();
         void EndMessage();
         void InvalidOption();
         void AfterMenu();
         Player InsertPlayer();
         int AskForMinInput();
-        
+        void ListPlayers(IEnumerable<Player> playersToList);
     }
 }
